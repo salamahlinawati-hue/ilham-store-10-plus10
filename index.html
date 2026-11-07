@@ -130,7 +130,35 @@ function cariProduk(){
     p.style.display=p.innerText.toLowerCase().includes(q)?'block':'none';
   });
 }
-</script>
+function checkout(){
+  if(keranjang.length===0){
+    alert('Keranjang masih kosong!');
+    return;
+  }
+
+  let nama=prompt('Masukkan nama pembeli:');
+  if(!nama) return;
+
+  let alamat=prompt('Masukkan alamat pengiriman:');
+  if(!alamat) return;
+
+  let pesan='PESANAN ILHAM STORE 10+10%0A';
+  pesan+='Nama: '+nama+'%0A';
+  pesan+='Alamat: '+alamat+'%0A';
+  pesan+='Produk:%0A';
+
+  keranjang.forEach((item,i)=>{
+    pesan+=(i+1)+'. '+item+'%0A';
+  });
+
+  window.open(
+    'https://wa.me/?text='+encodeURIComponent(
+      pesan.replaceAll('%0A','\n')
+    ),
+    '_blank'
+  );
+}
+  </script>
 </body>
                                 </html>
         
