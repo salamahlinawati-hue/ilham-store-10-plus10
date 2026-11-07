@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>ILHAM STORE 10+10</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f5f9;color:#182235}
+header{background:#101827;color:white;padding:20px}
+.brand{font-size:25px;font-weight:bold}
+.tagline{color:#b9c6d8;margin-top:6px}
+nav{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none}
+.search{padding:18px;background:white}
+input{width:100%;padding:13px;border:1px solid #ddd;border-radius:9px;font-size:15px}
+.hero{margin:16px;padding:25px;border-radius:14px;background:linear-gradient(120deg,#172c50,#167c91);color:white}
+.hero h1{font-size:27px;margin:0 0 10px}
+.hero p{line-height:1.5}
+button{border:0;border-radius:8px;padding:12px 17px;background:#087f73;color:white;font-weight:bold}
+main{padding:16px}
+.section-title{font-size:21px;margin:12px 0}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.product{background:white;border-radius:12px;padding:12px;box-shadow:0 2px 8px #0000000c}
+.photo{height:125px;background:#e9edf3;border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;color:#667085;font-size:13px}
+.product h3{font-size:15px;margin:12px 0 7px}
+.price{font-weight:bold;color:#087f73;margin-bottom:10px}
+.product button{width:100%;font-size:13px}
+.info{background:white;padding:18px;border-radius:12px;margin-top:18px;line-height:1.6}
+footer{background:#101827;color:#dce5f1;text-align:center;padding:25px;margin-top:25px}
+#cart{font-weight:bold}
+@media(min-width:700px){.products{grid-template-columns:repeat(4,1fr)}main,.search{padding-left:6%;padding-right:6%}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">ILHAM STORE 10+10®</div>
+  <div class="tagline">Belanja mudah, pilihan semakin banyak!</div>
+  <nav>
+    <a href="#produk">Produk</a>
+    <a href="#penjual">Jadi Penjual</a>
+    <a href="#tentang">Tentang Kami</a>
+    <a href="#keranjang">🛒 Keranjang <span id="cart">0</span></a>
+  </nav>
+</header>
+
+<div class="search">
+  <input id="search" type="search" placeholder="Cari produk yang kamu inginkan..." oninput="cariProduk()">
+</div>
+
+<section class="hero">
+  <h1>Selamat Datang di ILHAM STORE!</h1>
+  <p>Marketplace online multi-penjual. Temukan berbagai kebutuhan dalam satu tempat.</p>
+  <button onclick="document.getElementById('produk').scrollIntoView()">Mulai Belanja</button>
+</section>
+
+<main>
+  <h2 class="section-title" id="produk">Produk Pilihan</h2>
+  <div class="products" id="daftar">
+    <article class="product">
+      <div class="photo">Foto belum tersedia</div>
+      <h3>Kaos Pria</h3><div class="price">Rp75.000</div>
+      <button onclick="tambah('Kaos Pria')">+ Keranjang</button>
+    </article>
+    <article class="product">
+      <div class="photo">Foto belum tersedia</div>
+      <h3>Sandal Harian</h3><div class="price">Rp45.000</div>
+      <button onclick="tambah('Sandal Harian')">+ Keranjang</button>
+    </article>
+    <article class="product">
+      <div class="photo">Foto belum tersedia</div>
+      <h3>Tas Selempang</h3><div class="price">Rp90.000</div>
+      <button onclick="tambah('Tas Selempang')">+ Keranjang</button>
+    </article>
+    <article class="product">
+      <div class="photo">Foto belum tersedia</div>
+      <h3>Lampu LED</h3><div class="price">Rp30.000</div>
+      <button onclick="tambah('Lampu LED')">+ Keranjang</button>
+    </article>
+    <article class="product">
+      <div class="photo">Foto belum tersedia</div>
+      <h3>Jam Tangan</h3><div class="price">Rp120.000</div>
+      <button onclick="tambah('Jam Tangan')">+ Keranjang</button>
+    </article>
+    <article class="product">
+      <div class="photo">Foto belum tersedia</div>
+      <h3>Sepatu Sneakers</h3><div class="price">Rp150.000</div>
+      <button onclick="tambah('Sepatu Sneakers')">+ Keranjang</button>
+    </article>
+  </div>
+
+  <section class="info" id="keranjang">
+    <h2>🛒 Keranjang Belanja</h2>
+    <div id="isi">Keranjang masih kosong.</div>
+  </section>
+
+  <section class="info" id="penjual">
+    <h2>Ingin Berjualan?</h2>
+    <p>Bergabunglah menjadi penjual di ILHAM STORE 10+10®.</p>
+    <p>Pendaftaran penjual akan tersedia setelah sistem akun dibuat.</p>
+  </section>
+
+  <section class="info" id="tentang">
+    <h2>Tentang ILHAM STORE</h2>
+    <p>Marketplace online yang menghubungkan penjual dan pembeli dalam satu platform.</p>
+    <p><b>sibajag bersatu</b></p>
+  </section>
+</main>
+
+<footer>
+  <b>ILHAM STORE 10+10®</b>
+  <p>Belanja mudah, aman, dan nyaman.</p>
+  <small>© 2026 ILHAM STORE</small>
+</footer>
+
+<script>
+let keranjang=[];
+function tambah(nama){
+  keranjang.push(nama);
+  document.getElementById('cart').textContent=keranjang.length;
+  document.getElementById('isi').innerHTML=keranjang.map((n,i)=>
+    (i+1)+'. '+n
+  ).join('<br>');
+}
+function cariProduk(){
+  let q=document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.product').forEach(p=>{
+    p.style.display=p.innerText.toLowerCase().includes(q)?'block':'none';
+  });
+}
+</script>
+</body>
+                                </html>
+        
